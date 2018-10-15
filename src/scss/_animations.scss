@@ -1,0 +1,49 @@
+@import 'sizes';
+
+@keyframes gradient-translation {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: $outer-circle-size 0;
+  }
+}
+
+@keyframes gradient-translation2 {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@keyframes filter-brightness {
+  0% {
+    filter: brightness(100%) contrast(200%);
+  }
+
+  50% {
+    filter: brightness(200%) contrast(100%);
+  }
+
+  100% {
+    filter: brightness(100%) contrast(200%);
+  }
+}
+
+@keyframes rotate-circle {
+  0% {
+    transform: rotate(-50deg);
+  }
+
+  100% {
+    transform: rotate(310deg);
+  }
+}

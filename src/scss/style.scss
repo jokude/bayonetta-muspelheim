@@ -1,0 +1,25 @@
+@import 'mixins';
+@import 'circles';
+@import 'colors';
+
+html,
+body {
+  @include size(100%);
+  align-items: center;
+  background: $darkgrey;
+  display: flex;
+  font-family: Bayonetta;
+  justify-content: center;
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: Bayonetta;
+  src: url('./assets/font.otf') format('opentype');
+}
+
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

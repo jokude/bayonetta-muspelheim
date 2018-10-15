@@ -1,0 +1,187 @@
+@import 'animations';
+@import 'colors';
+@import 'sizes';
+
+$glow-color-shadow: 0 0 2px $white, 0 0 4px $white;
+$glow-color-shadow-highlight: 0 0 14px $white, 0 0 24px $white, 0 0 30px $white,
+  0 0 40px $white, 0 0 50px $white;
+$border-glow: 0 0 10px 2px $white;
+
+$glow-transition: 1.5s ease;
+
+.circle {
+  border-radius: 50%;
+  position: absolute;
+}
+
+.circle-text {
+  @include rotated-text(42, 360deg, 0deg);
+  color: $white;
+  height: 50%;
+  pointer-events: none;
+  position: relative;
+  text-shadow: $glow-color-shadow;
+  transition: text-shadow $glow-transition;
+
+  *[class^='char'] {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    transform-origin: center bottom;
+  }
+}
+
+.circle-border {
+  border-style: solid;
+}
+
+.glow-border {
+  border-color: $white;
+  box-shadow: none;
+  transition: box-shadow $glow-transition;
+}
+
+.thin-border {
+  border-width: $border-thin-width;
+}
+
+.thick-border {
+  border-width: $border-thick-width;
+}
+
+.rotate-circle {
+  animation-duration: 50s;
+  animation-iteration-count: infinite;
+  animation-name: rotate-circle;
+  animation-timing-function: linear;
+}
+
+.inner-circle-background-container {
+  @include size(100%);
+
+  animation-duration: 15s, 5s;
+  animation-iteration-count: infinite, infinite;
+  animation-name: gradient-translation2, filter-brightness;
+  animation-timing-function: linear, linear;
+  background: linear-gradient(
+    to right,
+    $lightyellow 10%,
+    $lightygreen 30%,
+    $lightblue 50%,
+    $lightred 70%,
+    $lightyellow 90%
+  );
+  background-size: 300%;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.inner-circle-background {
+  bottom: -10px;
+  left: -10px;
+  mix-blend-mode: luminosity;
+  position: absolute;
+  right: -10px;
+  top: -10px;
+}
+
+.inner-circle {
+  @include size($inner-circle-size);
+  pointer-events: none;
+  z-index: 2;
+
+  .inner-circle-outer-border {
+    @include size(100%);
+  }
+
+  .inner-circle-inner-thin-border {
+    @include size(calc(100% - #{$circle-thin-gap-inner}));
+  }
+
+  .inner-circle-inner-thick-border {
+    @include size(
+      calc(100% - #{$circle-thin-gap-inner + $circle-thin-thick-gap})
+    );
+  }
+}
+
+.inner-circle-text-container {
+  @include size(100%);
+  font-size: 40px;
+}
+
+.outer-circle-text-container {
+  @include size(calc(100% - 30px));
+  animation-direction: reverse;
+  font-size: 50px;
+  transition: text-shadow $glow-transition;
+}
+
+.outer-circle-background {
+  @include size($outer-circle-size);
+  background: inherit;
+  mix-blend-mode: multiply;
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity $glow-transition;
+}
+
+.outer-circle {
+  @include size(100%);
+  background: $black;
+  pointer-events: none;
+
+  .outer-circle-outer-border {
+    @include size(calc(100% - 12px));
+  }
+
+  .outer-circle-inner-thin-border {
+    @include size(calc(100% - #{$circle-thin-gap-outer}));
+  }
+
+  .outer-circle-inner-thick-border {
+    @include size(
+      calc(100% - #{$circle-thin-gap-outer + $circle-thin-thick-gap})
+    );
+  }
+}
+
+.main-circle {
+  @include size($outer-circle-size);
+
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-name: gradient-translation;
+  animation-timing-function: linear;
+  background: linear-gradient(
+    to right,
+    $red 17%,
+    $purple 30%,
+    $blue 60%,
+    $red 100%
+  );
+  opacity: 0;
+  position: relative;
+  transform: opacity 1s ease;
+
+  &:hover {
+    .outer-circle-background {
+      opacity: 0;
+    }
+
+    .outer-circle-text-container {
+      .circle-text {
+        text-shadow: $glow-color-shadow-highlight;
+      }
+    }
+
+    .outer-circle {
+      .glow-border {
+        box-shadow: $border-glow;
+      }
+    }
+  }
+}
