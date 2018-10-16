@@ -8,7 +8,7 @@ body {
   align-items: center;
   background: $darkgrey;
   display: flex;
-  font-family: Bayonetta;
+  font-family: Arial, Helvetica, sans-serif;
   justify-content: center;
   overflow: hidden;
 }
@@ -22,4 +22,12 @@ body {
   align-items: center;
   display: flex;
   justify-content: center;
+}
+
+.link {
+  color: $white;
+  padding: 40px;
+  position: fixed;
+  right: 0;
+  top: 0;
 }
