@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "deploy-gh-pages": "sh scripts/deploy-gh-pages",
     "lint:js": "eslint src/js",
     "lint:css": "sass-lint style.scss --verbose --no-exit",
     "lint": "lint:js && lint:css",
@@ -10,9 +11,10 @@
     "build:js": "babel src/js > build/script.js",
     "build:html": "html-minifier --collapse-whitespace src/index.html > build/index.html",
     "build:assets": "cp -rf src/assets/ build/assets/",
-    "build": "rm -rf build && mkdir build && npm-run-all --parallel build:*",
-    "start:build": "http-server build",
-    "start": "npm run build && npm run start:build"
+    "build": "npm-run-all --parallel build:*",
+    "clean": "rm -rf build",
+    "start:server": "http-server build",
+    "start": "npm run clean && mkdir build && npm run build && npm run start:server"
   },
   "author": "Richard Hidalgo",
   "license": "ISC",
